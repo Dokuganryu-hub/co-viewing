@@ -1,0 +1,88 @@
+@font-face {
+    font-family: Dimond Gothic;
+    src: url('./diagoth.ttf');
+}
+
+
+h1 {    
+    color: white;
+    font-family: "Dimond Gothic", sans-serif;
+    text-align: left;
+    font-size: 50px;
+    margin: 10px;
+}
+
+body {
+    /* display:flex; */
+    background-color: black;
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url("./bcg.jpg") center / cover no-repeat;
+    filter: grayscale(100%) contrast(1) brightness(0.1);
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+    color: rgba(255, 255, 255, 0.675);
+    font-family: "Rubik", sans-serif;
+    font-size: 20px;
+}
+
+.player p {
+    margin: 0;
+    align-self: flex-start;
+}
+
+.sidepbar {
+    float: right;
+    background-color: black;
+    height: 200px;
+
+}
+
+.videoBtn {
+    /* width: 150px; */
+    font-family: "Rubik", sans-serif;
+    padding: 16px 42px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+    line-height: 1.25;
+    background: #FC6E51;
+    color: white; 
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: background-color .6s ease;
+
+&:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform-style: flat;
+    transform: translate3d(-50%,-50%,0);
+    background: white;
+    border-radius: 100%;
+    transition: width .3s ease, height .3s ease;
+    overflow: hidden;
+  }
+  &:hover {
+      background-color: #ca4a30;
+  }
+  &:active {
+    &:after {
+      width: 300px;
+      height: 300px;
+    }
+}
+}
