@@ -1,5 +1,3 @@
-import './App.css'
-import PageHeader from './PageHeader.jsx'
 import ShowYouTubePlayer from './YouTubePlayer.jsx'
 import {useState} from "react";
 
@@ -16,8 +14,8 @@ function App() {
 
   return (
     <>
-      <section id="header"><PageHeader /></section>
-      <section id="center">
+      {/* <section id="header"><PageHeader /></section> */}
+      <section id="player" className="player-section">
         <p>Enter a YouTube video link:</p>
         <form id="videoForm" onSubmit={handleSubmit}>
           <input type="text" id="videoLink" name="videoLink" />
