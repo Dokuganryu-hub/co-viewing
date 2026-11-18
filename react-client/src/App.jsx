@@ -3,13 +3,33 @@ import {useState} from "react";
 
 function App() {
 
-  const [videoId, setVideoId] = useState('')
+  const [videoId, setVideoId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
     const submittedLink = new FormData(event.currentTarget).get('videoLink');
-    const cleanId = new URL(submittedLink).searchParams.get('v');
-    setVideoId(cleanId);
+    
+    try {
+      const currentUrl = new URL(submittedLink);
+      let cleanId = currentUrl.searchParams.get('v');
+      if (currentUrl.hostname !== 'www.youtube.com' && currentUrl.hostname !== 'youtube.com') {
+        if (currentUrl.hostname !== 'youtu.be') {
+          throw new Error('It is not a YouTube link');
+        } else {
+          cleanId = currentUrl.pathname.slice(1);
+        }
+      }
+      if (!cleanId) {
+        throw new Error('Invalid YouTube link');
+      }
+      setVideoId(cleanId);
+      setErrorMessage('');
+      event.currentTarget.reset();
+    } catch (error) {
+      setErrorMessage(error.message);
+      return;
+    } 
   }
 
   return (
@@ -21,6 +41,7 @@ function App() {
           <input type="text" id="videoLink" name="videoLink" />
           <button type="submit">Submit</button>
         </form>
+        { errorMessage && <p>{errorMessage}</p> }
         <ShowYouTubePlayer videoId={videoId} />
       </section>
     </>
