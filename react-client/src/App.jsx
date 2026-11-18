@@ -5,12 +5,13 @@ import {useState} from "react";
 
 function App() {
 
-  const [videoLink, setVideoLink] = useState('')
+  const [videoId, setVideoId] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault();
     const submittedLink = new FormData(event.currentTarget).get('videoLink');
-    setVideoLink(submittedLink);
+    const cleanId = new URL(submittedLink).searchParams.get('v');
+    setVideoId(cleanId);
   }
 
   return (
@@ -22,7 +23,7 @@ function App() {
           <input type="text" id="videoLink" name="videoLink" />
           <button type="submit">Submit</button>
         </form>
-        <ShowYouTubePlayer videoLink={videoLink} />
+        <ShowYouTubePlayer videoId={videoId} />
       </section>
     </>
   )
