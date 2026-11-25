@@ -34,7 +34,6 @@ function App() {
 
   return (
     <>
-      {/* <section id="header"><PageHeader /></section> */}
       <section id="player" className="player-section">
         <p>Enter a YouTube video link:</p>
         <form id="videoForm" onSubmit={handleSubmit}>
@@ -42,7 +41,7 @@ function App() {
           <button type="submit">Submit</button>
         </form>
         { errorMessage && <p>{errorMessage}</p> }
-        <ShowYouTubePlayer videoId={videoId} />
+        <ShowYouTubePlayer videoId={videoId} key={videoId} />
       </section>
     </>
   )
